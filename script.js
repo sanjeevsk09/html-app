@@ -8,24 +8,19 @@ const options = {
 
 const getWeather= (city)=>{
     cityName.innerHTML=city;
+    
 
 fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options)
 	.then(response => response.json())
 	.then((response) => {
                     console.log(response)
 
-                    cloud_pct.innerHTML = response.cloud_pct
+                    
                     feels_like2.innerHTML = response.feels_like 
                     humidity2.innerHTML = response.humidity 
                     wind_speed2.innerHTML = response.wind_speed
-                    feels_like.innerHTML = response.feels_like 
-                    humidity.innerHTML = response.humidity 
-                    min_temp.innerHTML = response.min_temp
-                    max_temp.innerHTML = response.max_temp
-                    wind_speed.innerHTML = response.wind_speed
                     wind_degrees.innerHTML = response.wind_degrees
-                    sunrise.innerHTML = response.sunrise
-                    sunset.innerHTML = response.sunset
+
     
     })
     .catch(err=> console.error(err))
@@ -36,4 +31,21 @@ search.addEventListener("click",(e)=>{
     getWeather(city.value)
 })
 
-getWeather("delhi")
+let hit = document.getElementById("city")
+let srh= document.getElementById("search")
+
+window.addEventListener("keydown",(e)=>{
+  
+    if(e.key === 'Enter'){
+    getWeather(city.value)
+    }
+})
+
+getWeather("durgapur")
+
+function preventNumberInput(e){
+    let keyCode=(e.keyCode ? e.keyCode : e.which);
+    if(keyCode>47 && keyCode<58 || keyCode>95 && keyCode<107 || keyCode===32){
+        e.preventDefault();
+    }
+}

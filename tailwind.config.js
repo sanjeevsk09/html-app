@@ -1,7 +1,11 @@
 module.exports = {
   content: ['./*.html'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        space:"'Space Mono',monospace"
+      }
+    },
   },
   plugins: [],
 }
